@@ -1,8 +1,9 @@
-def call() {
+def call(Map config) {
 
-    echo "Building Docker Image..."
+    echo "Building Docker image ${config.imageName}:${config.imageTag}"
 
-    sh '''
-        docker build -t sample-app:v1 .
-    '''
+    sh """
+        docker build \
+        -t ${config.imageName}:${config.imageTag} .
+    """
 }
