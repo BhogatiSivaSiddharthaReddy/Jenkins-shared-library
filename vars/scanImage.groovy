@@ -1,8 +1,10 @@
-def call() {
+def call(Map config) {
 
-    echo "Scanning Docker Image..."
+    echo "Scanning Docker image"
 
-    sh '''
-        trivy image sample-app:v1
-    '''
+    sh """
+        trivy image \
+        --severity HIGH,CRITICAL \
+        ${config.imageName}:${config.imageTag}
+    """
 }
